@@ -1,0 +1,8 @@
+table {
+  width: 100%;
+}
+
+.stats-container {
+  overflow-y: auto;
+  margin-top: 15px;
+}

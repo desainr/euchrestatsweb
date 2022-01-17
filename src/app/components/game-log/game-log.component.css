@@ -1,0 +1,32 @@
+mat-card {
+  margin: 8px;
+}
+
+.game-log-item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.score-info {
+  flex-basis: 33.33%;
+}
+
+.score-info-top {
+  border-bottom: 1px lightgray solid;
+}
+
+.games-list {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.game-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.game-log-header button {
+  margin: 1em;
+}

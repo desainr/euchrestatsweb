@@ -1,0 +1,71 @@
+<div>
+  <mat-grid-list cols="2" rowHeight="9vh">
+    <mat-grid-tile>
+      Winning Team
+    </mat-grid-tile>
+    <mat-grid-tile>
+      Losing Team
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Player 1</mat-label>
+        <mat-select name="winningP1" ngDefaultControl [(ngModel)]="winningP1">
+          <mat-option *ngFor="let player of availablePlayers" [value]="player">{{player.Name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Player 1</mat-label>
+        <mat-select name="losingP1" ngDefaultControl [(ngModel)]="losingP1">
+          <mat-option *ngFor="let player of availablePlayers" [value]="player">{{player.Name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Player 2</mat-label>
+        <mat-select name="winningP2" ngDefaultControl [(ngModel)]="winningP2">
+          <mat-option *ngFor="let player of availablePlayers" [value]="player">{{player.Name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Player 2</mat-label>
+        <mat-select name="losingP2" ngDefaultControl  [(ngModel)]="losingP2">
+          <mat-option *ngFor="let player of availablePlayers" [value]="player">{{player.Name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Score</mat-label>
+        <input matInput type="number" [(ngModel)]="winningScore">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Score</mat-label>
+        <input matInput type="number" [(ngModel)]="losingScore">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput [(ngModel)]="location" type="text">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field style="width: 55%">
+          <input matInput type="datetime-local" placeholder="Date" [(ngModel)]="dateTimeLocal">
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <div style="width: 100%; display: flex;">
+        <button mat-raised-button color="warn" style="flex: 1 1 50%" (click)="cancelSubmit()">Cancel</button>
+        <button mat-raised-button style="color: mediumseagreen; flex: 1 1 50%" (click)="submit()">Add</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

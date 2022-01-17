@@ -1,0 +1,24 @@
+game-log {
+  width: 75%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+statistics {
+  height: 100%;
+  width: 75%;
+  overflow-y: scroll;
+}
+
+mat-grid-tile-header {
+  background-color: white !important;
+  color: black !important;
+}
+
+#main-grid {
+  flex-direction: column !important;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,32 @@
+<div>
+  <div class="game-log-header">
+    <div class="mat-h5" style="margin-top: 1em;">
+      {{showingAll ? 'All' : 'Page ' + pageNumber + '/' + totalPages}}
+    </div>
+    <div class="pagination-bar">
+      <button color="primary" mat-icon-button (click)="goToPreviousPage()"><mat-icon>arrow_back</mat-icon></button>
+      <button color="primary" mat-icon-button (click)="goToNextPage()"><mat-icon>arrow_forward</mat-icon></button>
+      <button color="accent" *ngIf="isMobile && !showingAll" mat-icon-button (click)="showAll()"><mat-icon>expand_more</mat-icon></button>
+      <button color="accent" *ngIf="isMobile && showingAll" mat-icon-button (click)="showAll()"><mat-icon>expand_less</mat-icon></button>
+      <button *ngIf="!isMobile && !showingAll" color="accent" mat-raised-button (click)="showAll()">Show All</button>
+      <button *ngIf="!isMobile && showingAll" color="accent" mat-raised-button (click)="showAll()">Show in Pages</button>
+    </div>
+  </div>
+  <div class="games-list">
+    <mat-card *ngFor="let game of gamesPaginated">
+      <mat-card-title style="font-size: 16px">{{game.displayDate}}</mat-card-title>
+      <mat-card-subtitle>{{game.Location.Description}}</mat-card-subtitle>
+      <mat-card-content>
+        <div class="game-log-item">
+          <div class="score-info score-info-top">{{game.WinningTeam.Players[0].Name}}</div>
+          <div class="score-info score-info-top">{{game.WinningTeam.Players[1].Name}}</div>
+          <div class="score-info score-info-top">{{game.WinningTeam.Score}}</div>
+          <div class="score-info">{{game.LosingTeam.Players[0].Name}}</div>
+          <div class="score-info">{{game.LosingTeam.Players[1].Name}}</div>
+          <div class="score-info">{{game.LosingTeam.Score}}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

@@ -1,0 +1,77 @@
+<div class="stats-container">
+  <button mat-raised-button (click)="toggleTeamView()">{{this.showTeamStats ? 'Show Individual Stats' : 'Show Team Stats' }}</button>
+
+  <table [hidden]="showTeamStats" mat-table [dataSource]="playerDataSource" matSort #playerTableSort="matSort"
+         class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+        Name
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Wins">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+        Wins
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.Wins}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Losses">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+        Losses
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.Losses}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="winPct">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+        Win %
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.winPct}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="playerDisplayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: playerDisplayColumns;"></tr>
+  </table>
+  <div [hidden]="!showTeamStats">
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </mat-form-field>
+    <table mat-table matSort #teamsTableSort="matSort" [dataSource]="teamDataSource">
+      <ng-container matColumnDef="Player 1">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Player 1</th>
+        <td mat-cell *matCellDef="let element"> {{element.Players[0].Name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Player 2">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Player 2</th>
+        <td mat-cell *matCellDef="let element"> {{element.Players[1].Name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Wins">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Wins</th>
+        <td mat-cell *matCellDef="let element"> {{element.Wins}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Losses">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Losses</th>
+        <td mat-cell *matCellDef="let element"> {{element.Losses}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="winPct">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Win %</th>
+        <td mat-cell *matCellDef="let element"> {{element.winPct}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="teamDisplayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: teamDisplayColumns;"></tr>
+    </table>
+  </div>
+</div>

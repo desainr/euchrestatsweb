@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "72581ff1-18e3-4acd-8343-23daf74afa5c"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "EuchreStatsWeb": {
+    "EuchreStats": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/euchre-stats-web",
+            "outputPath": "dist/euchre-stats",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "EuchreStatsWeb:build:production"
+              "browserTarget": "EuchreStats:build:production"
             },
             "development": {
-              "browserTarget": "EuchreStatsWeb:build:development"
+              "browserTarget": "EuchreStats:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "EuchreStatsWeb:build"
+            "browserTarget": "EuchreStats:build"
           }
         },
         "test": {
@@ -94,6 +97,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -102,5 +106,5 @@
       }
     }
   },
-  "defaultProject": "EuchreStatsWeb"
+  "defaultProject": "EuchreStats"
 }
