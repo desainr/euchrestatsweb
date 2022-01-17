@@ -20,7 +20,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 import { MatNativeDateModule } from '@angular/material/core';
-import {LocationService} from "../../services/location.service";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -47,6 +47,7 @@ import {LocationService} from "../../services/location.service";
     MatBottomSheetModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
   ],
   providers: [
     {provide: MatBottomSheetRef, useValue: {}},

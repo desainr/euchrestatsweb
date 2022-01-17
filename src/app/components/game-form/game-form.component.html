@@ -33,7 +33,7 @@
     <mat-grid-tile>
       <mat-form-field class="split-field">
         <mat-label>Player 2</mat-label>
-        <mat-select name="losingP2" ngDefaultControl  [(ngModel)]="losingP2">
+        <mat-select name="losingP2" ngDefaultControl [(ngModel)]="losingP2">
           <mat-option *ngFor="let player of availablePlayers" [value]="player">{{player.Name}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -51,7 +51,10 @@
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
-      <mat-form-field style="width: 60%">
+      <mat-checkbox [(ngModel)]="useCurrentLocation">Use Current Location</mat-checkbox>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="!useCurrentLocation" colspan="2">
+      <mat-form-field class="single-field">
         <mat-label>Location</mat-label>
         <input matInput [(ngModel)]="location" type="text">
       </mat-form-field>
@@ -63,9 +66,9 @@
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
-        <mat-form-field class="single-field">
-          <input matInput type="datetime-local" placeholder="Date" [(ngModel)]="dateTimeLocal">
-        </mat-form-field>
+      <mat-form-field class="single-field">
+        <input matInput type="datetime-local" placeholder="Date" [(ngModel)]="dateTimeLocal">
+      </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <div class="single-field" style="display: flex">

@@ -18,6 +18,7 @@ export class GameFormComponent {
   losingScore: number = 0;
   notes: string;
   location: string;
+  useCurrentLocation: boolean = true;
   date: Date = new Date();
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private _bottomSheetRef: MatBottomSheetRef<GameFormComponent>) { }
@@ -51,8 +52,9 @@ export class GameFormComponent {
     game.WinningTeam = winningTeam;
     game.LosingTeam = losingTeam;
     game.Datetime = this.date;
+    game.Notes = this.notes;
 
-    this._bottomSheetRef.dismiss(game);
+    this._bottomSheetRef.dismiss({game, useCurrentLocation: this.useCurrentLocation});
   }
 
   set dateTimeLocal(value) {

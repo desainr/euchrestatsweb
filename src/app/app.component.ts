@@ -42,14 +42,13 @@ export class AppComponent {
   openGameForm() {
     const ref = this._bottomSheet.open(GameFormComponent, { data: {players: this.players, teams: this.teams }});
 
-    ref.afterDismissed().subscribe((game: Game) => {
+    ref.afterDismissed().subscribe(({game, useCurrentLocation}) => {
       if (game) {
-        if (this.geolocation) {
+        if (this.geolocation && useCurrentLocation) {
           game.Location.Latitude = this.geolocation.coords.latitude;
           game.Location.Longitude = this.geolocation.coords.longitude;
         }
         this._databaseService.addGame(game).subscribe(dbResult => {
-
           if (dbResult && dbResult.UID) {
             this.updateDataLists(game);
             this._snackBar.open('Game saved successfully', 'Ok', {duration: 3000})

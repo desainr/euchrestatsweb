@@ -15,7 +15,7 @@
   <div class="games-list">
     <mat-card *ngFor="let game of gamesPaginated">
       <mat-card-title style="font-size: 16px">{{game.displayDate}}</mat-card-title>
-      <mat-card-subtitle>{{game.Location.Description}}</mat-card-subtitle>
+      <mat-card-subtitle *ngIf="game.Notes">{{game.Notes}}</mat-card-subtitle>
       <mat-card-content>
         <div class="game-log-item">
           <div class="score-info score-info-top">{{game.WinningTeam.Players[0].Name}}</div>
