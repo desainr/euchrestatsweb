@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {GameLogComponent} from './game-log/game-log.component';
-import {DatabaseService} from "../../services/database.service";
 import {BrowserModule} from "@angular/platform-browser";
 import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
@@ -21,6 +20,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 import { MatNativeDateModule } from '@angular/material/core';
+import {LocationService} from "../../services/location.service";
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import { MatNativeDateModule } from '@angular/material/core';
   ],
   providers: [
     {provide: MatBottomSheetRef, useValue: {}},
-    {provide: MAT_BOTTOM_SHEET_DATA, useValue: {}}
+    {provide: MAT_BOTTOM_SHEET_DATA, useValue: {}},
   ],
   exports: [GameLogComponent, StatsComponent, GameFormComponent]
 })

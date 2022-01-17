@@ -1,7 +1,7 @@
 export class Location {
-  Description: string;
   Latitude: number;
   Longitude: number;
+  Description: string;
 }
 
 export class Player {
@@ -29,12 +29,14 @@ export class TeamStats {
   Players: Player[];
   Wins: number;
   Losses: number;
+  UID: string;
 
   static fromJSON(jsonObj: object, availablePlayers: Player[]): TeamStats {
     const stats = new TeamStats();
     stats.Wins = jsonObj[1]['Wins'];
     stats.Losses = jsonObj[1]['Losses'];
     stats.Players =  availablePlayers.filter(p => jsonObj[1]['Players'][p.UID])
+    stats.UID = jsonObj[0];
 
     return stats;
   }
@@ -47,6 +49,7 @@ export class TeamStats {
 export class Team {
   Players: Player[];
   Score: Number;
+  UID: string;
 }
 
 export class Game {
@@ -55,6 +58,7 @@ export class Game {
   WinningTeam: Team;
   LosingTeam: Team;
   UID: string;
+  Notes: string;
 
   get displayDate(): string {
     return this.Datetime.toLocaleString('en-US');
@@ -76,7 +80,33 @@ export class Game {
 
     game.WinningTeam = winningTeam;
     game.LosingTeam = losingTeam;
+    game.Notes = jsonObj[1]['Notes'] ?? '';
 
     return game;
+  }
+
+  toJson() {
+    const obj: any = {};
+    obj.Location = this.Location;
+    obj.Datetime = this.Datetime;
+    obj.WinningTeam = {
+      UID: this.WinningTeam.UID,
+      Players: {
+        [this.WinningTeam.Players[0].UID]: true,
+        [this.WinningTeam.Players[1].UID]: true,
+      },
+      Score: this.WinningTeam.Score,
+    };
+    obj.LosingTeam = {
+      UID: this.LosingTeam.UID,
+      Players: {
+        [this.LosingTeam.Players[0].UID]: true,
+        [this.LosingTeam.Players[1].UID]: true,
+      },
+      Score: this.LosingTeam.Score,
+    };
+    obj.Notes = this.Notes;
+
+    return obj;
   }
 }

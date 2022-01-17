@@ -23,11 +23,29 @@ export class StatsComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.players) {
+      this.players.sort((a, b) => {
+        if (a.winPct > b.winPct) {
+          return -1;
+        } else if (b.winPct > a.winPct) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.playerDataSource = new MatTableDataSource<Player>(this.players)
       this.playerDataSource.sort = this.playerTableSort;
     }
 
     if (this.teams) {
+      this.teams.sort((a, b) => {
+        if (a.winPct > b.winPct) {
+          return -1;
+        } else if (b.winPct > a.winPct) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.teamDataSource = new MatTableDataSource<TeamStats>(this.teams)
       this.teamDataSource.sort = this.teamsTableSort;
       this.teamDataSource.filterPredicate = (data: TeamStats, filter: string) => {

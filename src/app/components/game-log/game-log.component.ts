@@ -33,7 +33,7 @@ export class GameLogComponent implements OnChanges, OnInit {
   }
 
   ngOnInit() {
-    if (window.screen.width < 380) { // 768px portrait
+    if (window.screen.width < 400) { // 768px portrait
       this.isMobile = true;
     }
   }
