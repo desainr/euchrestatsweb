@@ -1,0 +1,13 @@
+<mat-card style="background: #323232">
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item class="form-error" *ngFor="let error of errors">
+        {{error}}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button
+            (click)="snackBarRef.dismiss()">Ok</button>
+  </mat-card-actions>
+</mat-card>

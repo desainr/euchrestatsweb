@@ -41,13 +41,13 @@
     <mat-grid-tile>
       <mat-form-field class="split-field">
         <mat-label>Score</mat-label>
-        <input matInput type="number" [(ngModel)]="winningScore">
+        <input matInput type="number" min="0" [(ngModel)]="winningScore">
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-form-field class="split-field">
         <mat-label>Score</mat-label>
-        <input matInput type="number" [(ngModel)]="losingScore">
+        <input matInput type="number" min="0" [(ngModel)]="losingScore">
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
