@@ -21,6 +21,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { MapViewComponent } from './map-view/map-view.component';
+import {GoogleMapsModule} from '@angular/google-maps';
 import {MatSnackBarModule, MatSnackBarRef} from "@angular/material/snack-bar";
 import { ErrorListComponent } from './error-list/error-list.component';
 
@@ -29,7 +31,8 @@ import { ErrorListComponent } from './error-list/error-list.component';
     GameLogComponent,
     StatsComponent,
     GameFormComponent,
-    ErrorListComponent
+    ErrorListComponent,
+    MapViewComponent
   ],
   imports: [
     BrowserModule,
@@ -52,12 +55,13 @@ import { ErrorListComponent } from './error-list/error-list.component';
     MatNativeDateModule,
     MatCheckboxModule,
     MatSnackBarModule,
+    GoogleMapsModule,
   ],
   providers: [
     {provide: MatBottomSheetRef, useValue: {}},
     {provide: MAT_BOTTOM_SHEET_DATA, useValue: {}},
   ],
-  exports: [GameLogComponent, StatsComponent, GameFormComponent]
+  exports: [GameLogComponent, StatsComponent, GameFormComponent, MapViewComponent]
 })
 export class ComponentsModule {
 

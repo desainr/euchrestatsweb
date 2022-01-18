@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ComponentsModule} from "./components/components.module";
 import {CommonModule} from "@angular/common";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -16,10 +16,11 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSortModule} from "@angular/material/sort";
 import {MatIconModule} from "@angular/material/icon";
-import {MatBottomSheet, MatBottomSheetModule} from "@angular/material/bottom-sheet";
+import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {DatabaseService} from "../services/database.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {LocationService} from "../services/location.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,4 +51,5 @@ import {LocationService} from "../services/location.service";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
