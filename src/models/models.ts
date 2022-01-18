@@ -68,6 +68,16 @@ export class Game {
     return this.Datetime.toLocaleString('en-US');
   }
 
+  static sortByDateDesc(game1: Game, game2: Game): number {
+    if (game1.Datetime > game2.Datetime) {
+      return -1;
+    } else if (game2.Datetime > game1.Datetime) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
   static fromJSON(jsonObj: object, availablePlayers: Player[]): Game {
     const game = new Game();
     game.UID = jsonObj[0];

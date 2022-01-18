@@ -23,12 +23,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { MapViewComponent } from './map-view/map-view.component';
 import {GoogleMapsModule} from '@angular/google-maps';
+import {MatSnackBarModule, MatSnackBarRef} from "@angular/material/snack-bar";
+import { ErrorListComponent } from './error-list/error-list.component';
 
 @NgModule({
   declarations: [
     GameLogComponent,
     StatsComponent,
     GameFormComponent,
+    ErrorListComponent,
     MapViewComponent
   ],
   imports: [
@@ -51,6 +54,7 @@ import {GoogleMapsModule} from '@angular/google-maps';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatSnackBarModule,
     GoogleMapsModule,
   ],
   providers: [

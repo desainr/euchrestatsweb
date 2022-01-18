@@ -14,7 +14,7 @@
   </div>
   <div class="games-list">
     <mat-card *ngFor="let game of gamesPaginated">
-      <mat-card-title style="font-size: 16px">{{game.displayDate}}</mat-card-title>
+      <mat-card-title style="font-size: 16px">{{game.displayDate}}<br/><span style="color: rgba(0,0,0,.54); font-size: 15px;" *ngIf="game.Location.Description">{{game.Location.Description}}</span></mat-card-title>
       <mat-card-subtitle *ngIf="game.Notes">{{game.Notes}}</mat-card-subtitle>
       <mat-card-content>
         <div class="game-log-item">

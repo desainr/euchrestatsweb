@@ -22,7 +22,7 @@ export class AppComponent {
 
   constructor(private _databaseService: DatabaseService, private _bottomSheet: MatBottomSheet, private _snackBar: MatSnackBar, private _locationService: LocationService) {
     this._databaseService.getGames().subscribe(games => {
-      this.games = games.reverse();
+      this.games = games;
     });
 
     this._databaseService.getPlayers().subscribe(players => {
@@ -59,7 +59,8 @@ export class AppComponent {
   }
 
   updateDataLists(game: Game) {
-    this.games.splice(0, 0, game);
+    this.games.push(game);
+    this.games.sort(Game.sortByDateDesc);
 
     const winningTeamIndex = this.teams.findIndex(t => t.UID === game.WinningTeam.UID);
     this.teams[winningTeamIndex].Wins++;

@@ -1,7 +1,7 @@
 <div class="stats-container">
   <button mat-raised-button (click)="toggleTeamView()">{{this.showTeamStats ? 'Show Individual Stats' : 'Show Team Stats' }}</button>
 
-  <table [hidden]="showTeamStats" mat-table [dataSource]="playerDataSource" matSort #playerTableSort="matSort"
+  <table style="margin-top: 2vh" [hidden]="showTeamStats" mat-table [dataSource]="playerDataSource" matSort #playerTableSort="matSort"
          class="mat-elevation-z8">
 
     <!-- Position Column -->
