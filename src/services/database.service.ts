@@ -20,7 +20,7 @@ export class DatabaseService {
       const games = gamesJson['games'];
 
       return Object.entries(games).map((g: object) => Game.fromJSON(g, players));
-    }));
+    })).pipe(map((games: Game[]) => games.sort(Game.sortByDateDesc)));
   }
 
   public getTeamStats(): Observable<TeamStats[]> {
