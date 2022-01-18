@@ -21,10 +21,6 @@ export class AppComponent {
   selectedIndex: number = 0;
 
   constructor(private _databaseService: DatabaseService, private _bottomSheet: MatBottomSheet, private _snackBar: MatSnackBar, private _locationService: LocationService) {
-    this._databaseService.getGames().subscribe(games => {
-      this.games = games;
-    });
-
     this._databaseService.getPlayers().subscribe(players => {
       this.players = players;
     });
@@ -33,10 +29,17 @@ export class AppComponent {
       this.teams = teams;
     });
 
+    this._databaseService.getGames().subscribe(games => {
+      this.games = games;
+    });
+
     this._locationService.getLocation().subscribe(position => {
       this.geolocation = position;
     })
+  }
 
+  get isLoading(): boolean {
+    return !(this.games && this.players && this.teams);
   }
 
   openGameForm() {

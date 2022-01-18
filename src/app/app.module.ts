@@ -20,6 +20,7 @@ import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {DatabaseService} from "../services/database.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {LocationService} from "../services/location.service";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {LocationService} from "../services/location.service";
     MatIconModule,
     MatBottomSheetModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     DatabaseService,

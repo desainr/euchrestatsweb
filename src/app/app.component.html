@@ -12,8 +12,11 @@
       <mat-tab label="Game Log"></mat-tab>
       <mat-tab label="Map"></mat-tab>
     </mat-tab-group>
-    <statistics *ngIf="selectedIndex === 0" [players]="players" [teams]="teams"></statistics>
-    <game-log [games]="games" *ngIf="selectedIndex === 1"></game-log>
-    <map-view [games]="games" [currentLocation]="geolocation" *ngIf="selectedIndex === 2"></map-view>
+    <div *ngIf="isLoading" style="margin-top: 40vh">
+      <mat-spinner></mat-spinner>
+    </div>
+    <statistics *ngIf="selectedIndex === 0 &&!isLoading" [players]="players" [teams]="teams"></statistics>
+    <game-log [games]="games" *ngIf="selectedIndex === 1 && !isLoading"></game-log>
+    <map-view [games]="games" [currentLocation]="geolocation" *ngIf="selectedIndex === 2 &&!isLoading"></map-view>
   </div>
 </div>
