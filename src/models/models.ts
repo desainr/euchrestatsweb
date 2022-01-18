@@ -2,6 +2,10 @@ export class Location {
   Latitude: number;
   Longitude: number;
   Description: string;
+
+  get latLngJson(): google.maps.LatLngLiteral {
+    return {lat: this.Latitude, lng: this.Longitude};
+  }
 }
 
 export class Player {
@@ -67,7 +71,10 @@ export class Game {
   static fromJSON(jsonObj: object, availablePlayers: Player[]): Game {
     const game = new Game();
     game.UID = jsonObj[0];
-    game.Location = jsonObj[1]['Location'];
+    game.Location = new Location();
+    game.Location.Description = jsonObj[1]['Location']['Description']
+    game.Location.Latitude = Number(jsonObj[1]['Location']['Latitude']);
+    game.Location.Longitude = Number(jsonObj[1]['Location']['Longitude']);
     game.Datetime = new Date(jsonObj[1]['Datetime']);
 
     const winningTeam = new Team();
@@ -108,5 +115,9 @@ export class Game {
     obj.Notes = this.Notes;
 
     return obj;
+  }
+
+  get readableSummary() {
+    return `${this.WinningTeam.Players[0].Name}/${this.WinningTeam.Players[1].Name} defeat ${this.LosingTeam.Players[0].Name}/${this.LosingTeam.Players[1].Name} ${this.WinningTeam.Score}-${this.LosingTeam.Score}`
   }
 }

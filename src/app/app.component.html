@@ -10,8 +10,10 @@
     <mat-tab-group [(selectedIndex)]="selectedIndex">
       <mat-tab label="Stats"></mat-tab>
       <mat-tab label="Game Log"></mat-tab>
+      <mat-tab label="Map"></mat-tab>
     </mat-tab-group>
     <statistics *ngIf="selectedIndex === 0" [players]="players" [teams]="teams"></statistics>
     <game-log [games]="games" *ngIf="selectedIndex === 1"></game-log>
+    <map-view [games]="games" [currentLocation]="geolocation" *ngIf="selectedIndex === 2"></map-view>
   </div>
 </div>
