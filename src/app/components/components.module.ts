@@ -22,9 +22,9 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef} from "@a
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { MapViewComponent } from './map-view/map-view.component';
-import {GoogleMapsModule} from '@angular/google-maps';
 import {MatSnackBarModule, MatSnackBarRef} from "@angular/material/snack-bar";
 import { ErrorListComponent } from './error-list/error-list.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import { ErrorListComponent } from './error-list/error-list.component';
     MatNativeDateModule,
     MatCheckboxModule,
     MatSnackBarModule,
-    GoogleMapsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {provide: MatBottomSheetRef, useValue: {}},

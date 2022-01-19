@@ -1,10 +1,10 @@
 export class Location {
-  Latitude: number;
-  Longitude: number;
+  Latitude: number | null;
+  Longitude: number | null;
   Description: string;
 
-  get latLngJson(): google.maps.LatLngLiteral {
-    return {lat: this.Latitude, lng: this.Longitude};
+  get latLng() {
+    return [this.Latitude, this.Longitude];
   }
 }
 
@@ -83,8 +83,11 @@ export class Game {
     game.UID = jsonObj[0];
     game.Location = new Location();
     game.Location.Description = jsonObj[1]['Location']['Description']
-    game.Location.Latitude = Number(jsonObj[1]['Location']['Latitude']);
-    game.Location.Longitude = Number(jsonObj[1]['Location']['Longitude']);
+
+    const lat = Number(jsonObj[1]['Location']['Latitude']);
+    const lng = Number(jsonObj[1]['Location']['Longitude']);
+    game.Location.Latitude = lat ? Number(lat.toPrecision(7)) : null;
+    game.Location.Longitude = lng ? Number(lng.toPrecision(7)): null;
     game.Datetime = new Date(jsonObj[1]['Datetime']);
 
     const winningTeam = new Team();
