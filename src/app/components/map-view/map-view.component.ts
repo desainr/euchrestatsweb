@@ -51,44 +51,31 @@ export class MapViewComponent implements AfterViewInit {
     });
 
     const gamesWithLocations = this.games.filter(g => g.Location.Longitude && g.Location.Latitude);
-    // const locationGroups: object = {};
-    //
-    // gamesWithLocations.forEach(g => {
-    //     if (locationGroups[g.Location.Description]) {
-    //       locationGroups[g.Location.Description].push(g);
-    //     } else if (g.Location.Description) {
-    //       locationGroups[g.Location.Description] = [g];
-    //     } else {
-    //       const matchingLocationsWithDescs = gamesWithLocations.filter(gameWLoc => gameWLoc.Location.Latitude === g.Location.Latitude && gameWLoc.Location.Longitude === g.Location.Longitude && gameWLoc.Location.Description);
-    //
-    //       // just take the first one i guess?
-    //       if (matchingLocationsWithDescs.length) {
-    //         locationGroups[matchingLocationsWithDescs[0].Location.Description] = [g];
-    //       } else {
-    //         locationGroups[`${g.Location.Latitude}${g.Location.Longitude}`] = [g];
-    //       }
-    //     }
-    //   }
-    // )
-    //
-    // const m2 = Object.entries(locationGroups).map(([description, games]) => {
-    //   const marker = leaflet.marker(games[0].Location.latLng as leaflet.LatLngExpression, {icon});
-    //   marker.bindPopup(this.getPopupContent(games));
-    // });
+    const locationGroups: object = {};
 
-    const markers = gamesWithLocations.filter(g => g.Location.Longitude && g.Location.Latitude)
-      .map(g => {
-        const marker = leaflet.marker(g.Location.latLng as leaflet.LatLngExpression, {icon});
-        marker.bindPopup(this.getPopupContent(g));
+    gamesWithLocations.forEach(g => {
+        if (locationGroups[`${g.Location.Latitude}${g.Location.Longitude}`]) {
+          locationGroups[`${g.Location.Latitude}${g.Location.Longitude}`].push(g);
+        } else {
+          locationGroups[`${g.Location.Latitude}${g.Location.Longitude}`] = [g];
+        }
+      }
+    )
 
-        return marker;
-      });
+    const markers = Object.entries(locationGroups).map(([description, games]) => {
+      const marker = leaflet.marker(games[0].Location.latLng as leaflet.LatLngExpression, {icon});
+      marker.bindPopup(this.getPopupContent(games, description));
+
+      return marker;
+    });
 
     return markers;
   }
 
-  getPopupContent(game: Game): string {
-    return `
+  getPopupContent(games: Game[], description: string): string {
+    if (games.length === 1) {
+      const game = games[0];
+      return `
             <div>
                 <div style="font-weight: bold">
                     ${game.displayDate} ${game.Location.Description ? '- ' + game.Location.Description : ''}
@@ -99,6 +86,26 @@ export class MapViewComponent implements AfterViewInit {
                     ${game.LosingTeam.Players[0].Name}/${game.LosingTeam.Players[1].Name}: ${game.LosingTeam.Score}
                 </p>
             </div>`
+    } else {
+      const descriptions = games.map(g => g.Location.Description).filter(Boolean);
+      const gamesListHtml = games.map(g => {
+        return `
+            <p>
+                ${g.displayDate} - ${g.readableSummary}
+            </p>
+        `
+      }).join('');
+
+      return `
+            <div style="overflow-y: scroll">
+                <div style="font-weight: bold">
+                    ${descriptions.length > 0 ? descriptions[0] : description}
+                </div>
+                ${gamesListHtml}
+            </div>
+      `
+    }
+
   }
 
 }
