@@ -21,7 +21,7 @@ export class MapViewComponent implements AfterViewInit {
     this.loading = true;
     this.map = leaflet.map('map', {
       center: this.currentLocation ? [this.currentLocation.coords.latitude, this.currentLocation.coords.longitude]: [39.108733299159994, -84.44945150819291],
-      zoom: 3,
+      zoom: 4,
     });
 
     const tiles = leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
