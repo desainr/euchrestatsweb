@@ -51,11 +51,11 @@
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
-      <mat-checkbox [(ngModel)]="useCurrentLocation">Use Current Location</mat-checkbox>
+      <mat-checkbox [(ngModel)]="useCurrentLocation">Use Current Coordinates</mat-checkbox>
     </mat-grid-tile>
-    <mat-grid-tile *ngIf="!useCurrentLocation" colspan="2">
+    <mat-grid-tile colspan="2">
       <mat-form-field class="single-field">
-        <mat-label>Location</mat-label>
+        <mat-label>Location Description</mat-label>
         <input matInput [(ngModel)]="location" type="text">
       </mat-form-field>
     </mat-grid-tile>
