@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const BASE_API_URL = 'https://euchrestatsapi.azurewebsites.net/api/';
+const BASE_API_URL = 'https://euchrestatswebapi.azurewebsites.net/api/';
 
 @Injectable({
   providedIn: 'root'
