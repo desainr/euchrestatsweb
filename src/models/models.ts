@@ -82,12 +82,18 @@ export class Game {
     const game = new Game();
     game.UID = jsonObj[0];
     game.Location = new Location();
-    game.Location.Description = jsonObj[1]['Location']['Description']
 
-    const lat = Number(jsonObj[1]['Location']['Latitude']);
-    const lng = Number(jsonObj[1]['Location']['Longitude']);
-    game.Location.Latitude = lat ? Number(lat.toPrecision(7)) : null;
-    game.Location.Longitude = lng ? Number(lng.toPrecision(7)): null;
+    const location = jsonObj?.[1]?.['Location'];
+
+    if (location) {
+      game.Location.Description = jsonObj[1]['Location']['Description']
+
+      const lat = Number(jsonObj[1]['Location']['Latitude']);
+      const lng = Number(jsonObj[1]['Location']['Longitude']);
+      game.Location.Latitude = lat ? Number(lat.toPrecision(7)) : null;
+      game.Location.Longitude = lng ? Number(lng.toPrecision(7)): null;
+    }
+
     game.Datetime = new Date(jsonObj[1]['Datetime']);
 
     const winningTeam = new Team();
